@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nail Art Indonesia — Peta Demand 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #C9596A;
+    --rose-light: #F5C6CE;
+    --gold: #C8A96E;
+    --gold-light: #F5E8CB;
+    --ink: #1A1218;
+    --ink-mid: #3D2B36;
+    --cream: #FBF7F2;
+    --cream-dark: #F0E8E0;
+    --sage: #7B9E87;
+    --slate: #8B7D8A;
+    --chrome: linear-gradient(135deg, #e8d5b7, #f5e8cb, #c8a96e, #e8d5b7);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  .hero {
+    background: var(--ink);
+    padding: 80px 40px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,89,106,0.3), transparent 70%);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 10%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,169,110,0.2), transparent 70%);
+  }
+  .hero-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(200,169,110,0.4);
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 80px);
+    color: var(--cream);
+    line-height: 1.05;
+    max-width: 800px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--rose-light);
+  }
+  .hero-sub {
+    margin-top: 20px;
+    font-size: 15px;
+    color: rgba(251,247,242,0.6);
+    max-width: 600px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+  .stat-item { border-left: 2px solid var(--gold); padding-left: 16px; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--gold);
+    display: block;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: rgba(251,247,242,0.5);
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* SOURCE BAR */
+  .source-bar {
+    background: var(--ink-mid);
+    padding: 12px 40px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .source-bar span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: rgba(200,169,110,0.7);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .source-bar a {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  .source-bar a:hover { opacity: 1; }
+
+  /* LAYOUT */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 32px;
+    padding-top: 60px;
+    border-top: 1px solid var(--cream-dark);
+  }
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    color: var(--rose-light);
+    line-height: 1;
+    opacity: 0.5;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--ink);
+  }
+  .section-title small {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--slate);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  /* HEATMAP CALENDAR */
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .month-card {
+    border-radius: 8px;
+    padding: 12px 8px;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1.5px solid transparent;
+  }
+  .month-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    border-color: var(--gold);
+  }
+  .month-card.peak-5 { background: #C9596A; color: white; }
+  .month-card.peak-4 { background: #D97B6A; color: white; }
+  .month-card.peak-3 { background: #E8A882; color: var(--ink); }
+  .month-card.peak-2 { background: #F0D0A8; color: var(--ink); }
+  .month-card.peak-1 { background: var(--cream-dark); color: var(--slate); }
+  .month-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    display: block;
+  }
+  .month-level {
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    margin-top: 4px;
+    display: block;
+    opacity: 0.8;
+  }
+  .month-dots { font-size: 9px; margin-top: 4px; }
+  .month-tag {
+    font-size: 9px;
+    font-family: 'DM Mono', monospace;
+    margin-top: 6px;
+    display: block;
+    line-height: 1.3;
+    opacity: 0.85;
+  }
+  .peak-badge {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 8px;
+    font-family: 'DM Mono', monospace;
+    padding: 2px 6px;
+    border-radius: 10px;
+    white-space: nowrap;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .legend {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-top: 12px;
+    flex-wrap: wrap;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--slate); }
+  .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+
+  /* MONTH DETAIL CARDS */
+  .month-details { display: flex; flex-direction: column; gap: 28px; }
+  .detail-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s;
+  }
+  .detail-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.1); }
+  .detail-left {
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .detail-left.hot-5 { background: var(--rose); color: white; }
+  .detail-left.hot-4 { background: #D97B6A; color: white; }
+  .detail-left.hot-3 { background: var(--gold); color: var(--ink); }
+  .detail-left.hot-2 { background: var(--cream-dark); color: var(--ink); }
+  .detail-month {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+  }
+  .detail-heat {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    margin-top: 4px;
+    opacity: 0.8;
+    letter-spacing: 1px;
+  }
+  .detail-momen {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 12px;
+    opacity: 0.9;
+    font-weight: 500;
+  }
+  .detail-middle { padding: 24px; border-right: 1px solid var(--cream-dark); }
+  .detail-right { padding: 24px; }
+  .detail-subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--slate);
+    margin-bottom: 12px;
+  }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .tag-design { background: #FBE8EC; color: var(--rose); border: 1px solid #F5C6CE; }
+  .tag-material { background: #FBF3E2; color: #8B6914; border: 1px solid #E8D5A0; }
+  .tag-insight { background: #E8F2EC; color: #4A7D5C; border: 1px solid #B5D4C0; }
+
+  .insight-box {
+    background: linear-gradient(135deg, #FBF3E2, #FBE8EC);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px;
+    margin-top: 12px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--ink-mid);
+  }
+  .insight-box strong { color: var(--rose); }
+
+  /* TREN CHART */
+  .trend-section { padding: 48px 0; }
+  .trend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .trend-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+  .trend-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+  .trend-card-sub {
+    font-size: 12px;
+    color: var(--slate);
+    margin-bottom: 20px;
+  }
+  .bar-list { display: flex; flex-direction: column; gap: 10px; }
+  .bar-item { display: flex; align-items: center; gap: 10px; }
+  .bar-label { font-size: 12px; color: var(--ink-mid); width: 130px; flex-shrink: 0; }
+  .bar-track {
+    flex: 1;
+    background: var(--cream-dark);
+    border-radius: 4px;
+    height: 8px;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease;
+  }
+  .bar-pct { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--slate); width: 36px; text-align: right; }
+
+  /* MARKET DATA */
+  .market-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .market-card {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 12px;
+    padding: 24px 20px;
+  }
+  .market-card-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--gold);
+    display: block;
+  }
+  .market-card-label {
+    font-size: 12px;
+    color: rgba(251,247,242,0.6);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  .market-card-source {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: rgba(200,169,110,0.5);
+    margin-top: 10px;
+    display: block;
+    letter-spacing: 1px;
+  }
+
+  /* HARGA TABLE */
+  .price-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  .price-table th {
+    background: var(--ink);
+    color: var(--gold);
+    padding: 12px 16px;
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .price-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--cream-dark);
+    font-size: 13px;
+    vertical-align: top;
+  }
+  .price-table tr:last-child td { border-bottom: none; }
+  .price-table tr:hover td { background: var(--cream-dark); }
+  .price-range {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--rose);
+    font-weight: 500;
+  }
+
+  /* TREN 2026 */
+  .tren-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .tren-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+  .tren-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .tren-icon { font-size: 28px; }
+  .tren-name { font-family: 'Playfair Display', serif; font-size: 16px; }
+  .tren-origin { font-size: 10px; color: var(--slate); font-family: 'DM Mono', monospace; }
+  .tren-body { padding: 0 20px 20px; }
+  .tren-desc { font-size: 13px; line-height: 1.6; color: var(--ink-mid); }
+  .tren-pop {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .pop-label { font-size: 11px; color: var(--slate); }
+  .pop-bar { flex: 1; background: var(--cream-dark); border-radius: 4px; height: 6px; }
+  .pop-fill { height: 100%; border-radius: 4px; background: var(--rose); }
+  .pop-val { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--rose); }
+
+  /* STRATEGI */
+  .strat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .strat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    border-top: 3px solid var(--rose);
+  }
+  .strat-card:nth-child(2) { border-top-color: var(--gold); }
+  .strat-card:nth-child(3) { border-top-color: var(--sage); }
+  .strat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    color: var(--cream-dark);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .strat-title { font-family: 'Playfair Display', serif; font-size: 17px; margin-bottom: 10px; }
+  .strat-body { font-size: 13px; line-height: 1.7; color: var(--ink-mid); }
+  .strat-body li { margin-left: 16px; margin-bottom: 4px; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--ink);
+    color: rgba(251,247,242,0.5);
+    padding: 32px 40px;
+    margin-top: 80px;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .footer strong { color: var(--gold); }
+
+  /* NAV */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(251,247,242,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--cream-dark);
+    padding: 0 40px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .nav-link {
+    padding: 14px 18px;
+    font-size: 12px;
+    color: var(--slate);
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.5px;
+  }
+  .nav-link:hover { color: var(--rose); border-bottom-color: var(--rose); }
+
+  /* SCROLL ANIMATE */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    .calendar-grid { grid-template-columns: repeat(6, 1fr); }
+    .detail-card { grid-template-columns: 1fr; }
+    .trend-grid, .tren-grid, .strat-grid { grid-template-columns: 1fr; }
+    .market-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero { padding: 50px 20px 40px; }
+    .container { padding: 0 20px; }
+    .sticky-nav { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">💅 Nail Art Market Intelligence Indonesia — 2026</div>
+  <h1>Peta Demand<br><em>Nail Art</em><br>Sepanjang Tahun</h1>
+  <p class="hero-sub">Analisis berbasis data nyata dari Lemon8, TikTok, Tokopedia, Kompas, Detik, jurnal akademik, dan laporan Kemenperin — bukan asumsi semata.</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">Rp 4,79T</span>
+      <span class="stat-label">Proyeksi Pasar 2025 (Kompasiana)</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">4–9%</span>
+      <span class="stat-label">Pertumbuhan/tahun (Kompasiana)</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">US$280M</span>
+      <span class="stat-label">Nail Cosmetics Indonesia 2025 (Statista)</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">18–34 th</span>
+      <span class="stat-label">Segmen usia dominan</span>
+    </div>
+  </div>
+</div>
+
+<!-- SOURCE BAR -->
+<div class="source-bar">
+  <span>Sumber:</span>
+  <a href="https://www.kompasiana.com/camelinelimanto1916/688701e4c925c42d1e01e2b2/peluang-usaha-nail-art-di-indonesia-2025-data-tren-lokasi-terpopuler" target="_blank">Kompasiana 2025</a>
+  <a href="https://wolipop.detik.com/makeup-and-skincare/d-8362456/5-tren-nail-art-korea-2026-paling-dicari-dari-blush-nails-sampai-hello-kitty" target="_blank">Detik Wolipop 2026</a>
+  <a href="https://sozoskinclinic.com/blog/skin/tren-nail-art-2025-7-inspirasi-desain-untuk-kuku-cantikmu/" target="_blank">Sozo Clinic</a>
+  <a href="https://amelinebeauty.com/inspirasi-nail-art-lebaran/" target="_blank">Ameline Beauty</a>
+  <a href="https://ikm.kemenperin.go.id/" target="_blank">Kemenperin</a>
+  <a href="https://reforma.eu/blogs/news/jelly-glaze-nails-trend-2026" target="_blank">Reforma 2026</a>
+  <a href="https://lifestyle.kompas.com/read/2024/01/18/122603320/berapa-kisaran-harga-nail-art-di-salon-jakarta" target="_blank">Kompas Harga Salon</a>
+  <a href="https://ukmindonesia.id/baca-deskripsi-posts/potensi-bisnis-nail-art-bisnis-hias-kuku-yang-potensial-dan-menjanjikan" target="_blank">UKM Indonesia</a>
+</div>
+
+<!-- NAV -->
+<nav class="sticky-nav">
+  <a href="#heatmap" class="nav-link">Heatmap Demand</a>
+  <a href="#detail" class="nav-link">Detail Bulanan</a>
+  <a href="#tren" class="nav-link">Tren 2026</a>
+  <a href="#harga" class="nav-link">Benchmark Harga</a>
+  <a href="#market" class="nav-link">Data Pasar</a>
+  <a href="#strategi" class="nav-link">Strategi Bisnis</a>
+</nav>
+
+<div class="container">
+
+  <!-- SECTION 1: HEATMAP -->
+  <section id="heatmap">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <div class="section-title">
+        Kalender Demand Sepanjang Tahun
+        <small>Warna merah = demand tertinggi | Putih = demand rendah</small>
+      </div>
+    </div>
+
+    <div class="calendar-grid reveal">
+      <div class="month-card peak-3">
+        <span class="month-name">JAN</span>
+        <span class="month-dots">🔥🔥🔥</span>
+        <span class="month-tag">Imlek<br>prep</span>
+      </div>
+      <div class="month-card peak-4" style="position:relative">
+        <div class="peak-badge">DOUBLE PEAK</div>
+        <span class="month-name">FEB</span>
+        <span class="month-dots">🔥🔥🔥🔥</span>
+        <span class="month-tag">Imlek+<br>Valentine</span>
+      </div>
+      <div class="month-card peak-2">
+        <span class="month-name">MAR</span>
+        <span class="month-dots">🔥🔥</span>
+        <span class="month-tag">Slow<br>season</span>
+      </div>
+      <div class="month-card peak-5" style="position:relative">
+        <div class="peak-badge">🏆 PUNCAK</div>
+        <span class="month-name">APR</span>
+        <span class="month-dots">🔥🔥🔥🔥🔥</span>
+        <span class="month-tag">Ramadan<br>peak</span>
+      </div>
+      <div class="month-card peak-5" style="position:relative">
+        <div class="peak-badge">🏆 PUNCAK</div>
+        <span class="month-name">MEI</span>
+        <span class="month-dots">🔥🔥🔥🔥🔥</span>
+        <span class="month-tag">Lebaran<br>peak</span>
+      </div>
+      <div class="month-card peak-4">
+        <span class="month-name">JUN</span>
+        <span class="month-dots">🔥🔥🔥🔥</span>
+        <span class="month-tag">Wedding<br>+ Wisuda</span>
+      </div>
+      <div class="month-card peak-3">
+        <span class="month-name">JUL</span>
+        <span class="month-dots">🔥🔥🔥</span>
+        <span class="month-tag">Libur<br>sekolah</span>
+      </div>
+      <div class="month-card peak-4">
+        <span class="month-name">AGS</span>
+        <span class="month-dots">🔥🔥🔥🔥</span>
+        <span class="month-tag">HUT RI<br>17 Ags</span>
+      </div>
+      <div class="month-card peak-3">
+        <span class="month-name">SEP</span>
+        <span class="month-dots">🔥🔥🔥</span>
+        <span class="month-tag">Wedding<br>gel. 2</span>
+      </div>
+      <div class="month-card peak-3">
+        <span class="month-name">OKT</span>
+        <span class="month-dots">🔥🔥🔥</span>
+        <span class="month-tag">Wedding<br>season</span>
+      </div>
+      <div class="month-card peak-1">
+        <span class="month-name">NOV</span>
+        <span class="month-dots">🔥🔥</span>
+        <span class="month-tag">Slow +<br>stocking</span>
+      </div>
+      <div class="month-card peak-5" style="position:relative">
+        <div class="peak-badge">🏆 PUNCAK</div>
+        <span class="month-name">DES</span>
+        <span class="month-dots">🔥🔥🔥🔥🔥</span>
+        <span class="month-tag">Natal<br>+ NYE</span>
+      </div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#C9596A"></div> Peak (×5)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#D97B6A"></div> High (×4)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#E8A882"></div> Moderate-High (×3)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#F0D0A8"></div> Moderate (×2)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#F0E8E0"></div> Low (×1)</div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: DETAIL -->
+  <section id="detail">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <div class="section-title">
+        Breakdown Detail Per Momen
+        <small>Desain terlaris + bahan baku + insight bisnis per bulan peak</small>
+      </div>
+    </div>
+
+    <div class="month-details">
+
+      <!-- FEB -->
+      <div class="detail-card reveal">
+        <div class="detail-left hot-4">
+          <div>
+            <div class="detail-month">FEB</div>
+            <div class="detail-heat">🔥🔥🔥🔥 HIGH</div>
+          </div>
+          <div class="detail-momen">🏮 Imlek Puncak<br>💝 Valentine</div>
+        </div>
+        <div class="detail-middle">
+          <div class="detail-subtitle">Desain Terlaris</div>
+          <div class="tag-list">
+            <span class="tag tag-design">Chrome merah + emas</span>
+            <span class="tag tag-design">Motif shio &amp; ornamen imlek</span>
+            <span class="tag tag-design">Rose gold glassmani</span>
+            <span class="tag tag-design">Valentine ombre pink-red</span>
+            <span class="tag tag-design">Couple nail set</span>
+            <span class="tag tag-design">Nail charm hati + pita</span>
+          </div>
+          <div class="insight-box">
+            💡 <strong>Double peak</strong> langka — target dua segmen sekaligus: komunitas Tionghoa (Imlek) dan pasangan muda (Valentine). Buat paket bundle promo "Red & Love".
+          </div>
+        </div>
+        <div class="detail-right">
+          <div class="detail-subtitle">Bahan Baku Prioritas</div>
+          <div class="tag-list">
+            <span class="tag tag-material">Cat gel merah-emas</span>
+            <span class="tag tag-material">Magnetic gel (cat eye) merah</span>
+            <span class="tag tag-material">Foil emas + holographic</span>
+            <span class="tag tag-material">Nail charm hati &amp; koin</span>
+            <span class="tag tag-material">Glitter pink fine</span>
+            <span class="tag tag-material">Chrome powder gold</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- APR-MEI -->
+      <div class="detail-card reveal">
+        <div class="detail-left hot-5">
+          <div>
+            <div class="detail-month">APR–MEI</div>
+            <div class="detail-heat">🔥🔥🔥🔥🔥 PEAK</div>
+          </div>
+          <div class="detail-momen">🌙 Ramadan<br>🎊 Lebaran Idul Fitri</div>
+        </div>
+        <div class="detail-middle">
+          <div class="detail-subtitle">Desain Terlaris (Source: Lemon8, Ameline Beauty)</div>
+          <div class="tag-list">
+            <span class="tag tag-design">Nude + gold accent arabesque</span>
+            <span class="tag tag-design">Earth tone: terracotta, sage</span>
+            <span class="tag tag-design">Jade green marble</span>
+            <span class="tag tag-design">Chrome glitter gold full</span>
+            <span class="tag tag-design">Motif batik kawung/parang</span>
+            <span class="tag tag-design">Old money: dusty rose + pearl</span>
+            <span class="tag tag-design">Press-on wudhu-friendly</span>
+            <span class="tag tag-design">Brown x gold chrome set</span>
+          </div>
+          <div class="insight-box">
+            💡 <strong>Press-on nail Ramadan</strong> = market yang belum tergarap maksimal. Muslimah butuh solusi kuku cantik tapi bisa dilepas saat shalat. Produk ini viral di Lemon8 &amp; TikTok.
+          </div>
+        </div>
+        <div class="detail-right">
+          <div class="detail-subtitle">Bahan Baku Prioritas</div>
+          <div class="tag-list">
+            <span class="tag tag-material">Press-on nail blank (stok 2–3×)</span>
+            <span class="tag tag-material">Gel nude &amp; earth tone</span>
+            <span class="tag tag-material">Gold foil &amp; leaf</span>
+            <span class="tag tag-material">Nail sticker arabesque/floral</span>
+            <span class="tag tag-material">Chrome powder emas + rose gold</span>
+            <span class="tag tag-material">Rhinestone flat-back emas</span>
+            <span class="tag tag-material">Top coat matte &amp; glossy</span>
+            <span class="tag tag-material">Gel sage green + maroon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- JUN -->
+      <div class="detail-card reveal">
+        <div class="detail-left hot-4">
+          <div>
+            <div class="detail-month">JUN</div>
+            <div class="detail-heat">🔥🔥🔥🔥 HIGH</div>
+          </div>
+          <div class="detail-momen">💍 Wedding Season<br>🎓 Wisuda Juni–Juli</div>
+        </div>
+        <div class="detail-middle">
+          <div class="detail-subtitle">Desain Terlaris (Source: WeddingMarket, Popbela)</div>
+          <div class="tag-list">
+            <span class="tag tag-design">Glazed donut nails (malam)</span>
+            <span class="tag tag-design">Skinny French + pearl</span>
+            <span class="tag tag-design">Milky ombre fairy tale</span>
+            <span class="tag tag-design">Ivory + glitter silver</span>
+            <span class="tag tag-design">Floral detail 3D acrylic</span>
+            <span class="tag tag-design">Batik adat (pengantin)</span>
+            <span class="tag tag-design">Warna sesuai almamater (wisuda)</span>
+          </div>
+          <div class="insight-box">
+            💡 <strong>Wisuda</strong> = segmen unik — banyak yang request warna sesuai almamater kampus. Buat list katalog per universitas. Juga potensial untuk <strong>paket press-on wisuda</strong>.
+          </div>
+        </div>
+        <div class="detail-right">
+          <div class="detail-subtitle">Bahan Baku Prioritas</div>
+          <div class="tag-list">
+            <span class="tag tag-material">Gel builder (nail panjang pengantin)</span>
+            <span class="tag tag-material">Pearl &amp; opal charm</span>
+            <span class="tag tag-material">White gel &amp; ivory gel</span>
+            <span class="tag tag-material">3D acrylic flower</span>
+            <span class="tag tag-material">Gel cat eye pastel</span>
+            <span class="tag tag-material">Glitter silver &amp; champagne</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AGS -->
+      <div class="detail-card reveal">
+        <div class="detail-left hot-4">
+          <div>
+            <div class="detail-month">AGS</div>
+            <div class="detail-heat">🔥🔥🔥🔥 HIGH</div>
+          </div>
+          <div class="detail-momen">🇮🇩 HUT RI ke-81<br>17 Agustus 2026</div>
+        </div>
+        <div class="detail-middle">
+          <div class="detail-subtitle">Desain Terlaris</div>
+          <div class="tag-list">
+            <span class="tag tag-design">Flag nail merah-putih</span>
+            <span class="tag tag-design">Gradient merah → putih</span>
+            <span class="tag tag-design">Motif batik nasional</span>
+            <span class="tag tag-design">Garuda kecil accent nail</span>
+            <span class="tag tag-design">Peta Indonesia mini</span>
+            <span class="tag tag-design">Nail sticker tema kemerdekaan</span>
+          </div>
+          <div class="insight-box">
+            💡 <strong>Produksi nail sticker 17 Agustus</strong> = produk seasonal B2B yang bisa dijual ke nail artist lain di seluruh Indonesia via Shopee/Tokopedia. Margin tinggi, volume besar.
+          </div>
+        </div>
+        <div class="detail-right">
+          <div class="detail-subtitle">Bahan Baku Prioritas</div>
+          <div class="tag-list">
+            <span class="tag tag-material">Cat gel merah &amp; putih (stok besar)</span>
+            <span class="tag tag-material">Glitter perak &amp; merah</span>
+            <span class="tag tag-material">Nail sticker 17 Agustus (custom)</span>
+            <span class="tag tag-material">Top coat glossy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DES -->
+      <div class="detail-card reveal">
+        <div class="detail-left hot-5">
+          <div>
+            <div class="detail-month">DES</div>
+            <div class="detail-heat">🔥🔥🔥🔥🔥 PEAK</div>
+          </div>
+          <div class="detail-momen">🎄 Natal<br>🎆 New Year's Eve</div>
+        </div>
+        <div class="detail-middle">
+          <div class="detail-subtitle">Desain Terlaris (Source: Google Trends — Chrome Nails peak Des 78/100)</div>
+          <div class="tag-list">
+            <span class="tag tag-design">Chrome nails (Google Trends peak 78/100)</span>
+            <span class="tag tag-design">Holographic full cover</span>
+            <span class="tag tag-design">Galaxy midnight blue + silver</span>
+            <span class="tag tag-design">Glitter chunky party nail</span>
+            <span class="tag tag-design">Natal: merah-hijau-emas</span>
+            <span class="tag tag-design">Snowflake charm + candy cane</span>
+            <span class="tag tag-design">Press-on ready-wear instan</span>
+          </div>
+          <div class="insight-box">
+            💡 <strong>Press-on ready-wear</strong> = demand instan tinggi menjelang malam tahun baru. Siapkan stok siap kirim H-7 Natal. Chrome nails mencapai <strong>puncak search 100/100</strong> di awal 2026 (Accio.com).
+          </div>
+        </div>
+        <div class="detail-right">
+          <div class="detail-subtitle">Bahan Baku Prioritas</div>
+          <div class="tag-list">
+            <span class="tag tag-material">Chrome powder silver &amp; holographic</span>
+            <span class="tag tag-material">Glitter chunky &amp; fine mix</span>
+            <span class="tag tag-material">Gel silver, red, green (stok besar)</span>
+            <span class="tag tag-material">Nail charm bintang &amp; snowflake</span>
+            <span class="tag tag-material">Press-on blank &amp; ready-made</span>
+            <span class="tag tag-material">High-gloss top coat</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 3: TREN 2026 -->
+  <section id="tren">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <div class="section-title">
+        Tren Desain Dominan 2026
+        <small>Berdasarkan Seoul Nail Expo Nov 2025, TikTok viral, Reforma.eu, Detik Wolipop</small>
+      </div>
+    </div>
+
+    <div class="tren-grid reveal">
+      <div class="tren-card">
+        <div class="tren-header" style="background: linear-gradient(135deg, #f0e8ff, #e8d0ff);">
+          <div class="tren-icon">🫙</div>
+          <div>
+            <div class="tren-name">Jelly Glaze / Syrup Nails</div>
+            <div class="tren-origin">📍 Viral global 2026 — Reforma.eu Apr 2026</div>
+          </div>
+        </div>
+        <div class="tren-body">
+          <p class="tren-desc">Jelly gel polish (sheer, transparan) dilapis chrome iridescent. Efeknya seperti kaca atau permen keras. Di Indonesia via TikTok Lemon8 dengan sebutan "syrup nails". Pricing premium 20–25% lebih mahal dari gel biasa.</p>
+          <div class="tren-pop">
+            <span class="pop-label">Popularitas</span>
+            <div class="pop-bar"><div class="pop-fill" style="width:90%"></div></div>
+            <span class="pop-val">90%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tren-card">
+        <div class="tren-header" style="background: linear-gradient(135deg, #ffe8f0, #ffd0e0);">
+          <div class="tren-icon">🌊</div>
+          <div>
+            <div class="tren-name">Soft Waves Nail</div>
+            <div class="tren-origin">📍 Korea → Indonesia — Detik Wolipop Feb 2026</div>
+          </div>
+        </div>
+        <div class="tren-body">
+          <p class="tren-desc">Pola gelombang halus menyerupai pusaran air. Dari Jepang, dikembangkan Korea. Dipamerkan di Seoul Nail Expo Nov 2025. Makin menonjol dengan chrome powder metalik. Cocok untuk semua momen, terutama wedding.</p>
+          <div class="tren-pop">
+            <span class="pop-label">Popularitas</span>
+            <div class="pop-bar"><div class="pop-fill" style="width:80%"></div></div>
+            <span class="pop-val">80%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tren-card">
+        <div class="tren-header" style="background: linear-gradient(135deg, #e8f8e8, #d0ecd0);">
+          <div class="tren-icon">😊</div>
+          <div>
+            <div class="tren-name">Blush Nails</div>
+            <div class="tren-origin">📍 Seoul Nail Expo 2025 — Detik Wolipop</div>
+          </div>
+        </div>
+        <div class="tren-body">
+          <p class="tren-desc">Warna nude-pink tipis seperti "blush on" di kuku. Ultra-minimalis, cocok untuk working women dan muslimah. Sangat populer untuk Ramadan &amp; Lebaran karena terlihat bersih dan sopan namun tetap stylish.</p>
+          <div class="tren-pop">
+            <span class="pop-label">Popularitas</span>
+            <div class="pop-bar"><div class="pop-fill" style="width:85%"></div></div>
+            <span class="pop-val">85%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tren-card">
+        <div class="tren-header" style="background: linear-gradient(135deg, #fff8e8, #f5e8c0);">
+          <div class="tren-icon">✨</div>
+          <div>
+            <div class="tren-name">Chrome Nails</div>
+            <div class="tren-origin">📍 Google Trends peak 100/100 — Jan 2026 (Accio.com)</div>
+          </div>
+        </div>
+        <div class="tren-body">
+          <p class="tren-desc">Chrome powder dengan kilau metalik cermin. Search interest mencapai puncak 100/100 awal Januari 2026 dan 78/100 di Desember 2025 — konsisten tertinggi sepanjang tahun. Warna: gold, silver, rose gold, aurora.</p>
+          <div class="tren-pop">
+            <span class="pop-label">Popularitas</span>
+            <div class="pop-bar"><div class="pop-fill" style="width:95%"></div></div>
+            <span class="pop-val">95%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tren-card">
+        <div class="tren-header" style="background: linear-gradient(135deg, #e8f0ff, #d0e0ff);">
+          <div class="tren-icon">💎</div>
+          <div>
+            <div class="tren-name">Crystal / Nuance Nails</div>
+            <div class="tren-origin">📍 TikTok Indonesia 2026 — Fimela Jan 2026</div>
+          </div>
+        </div>
+        <div class="tren-body">
+          <p class="tren-desc">Desain bertekstur seperti kristal atau marmer/quartz. Eksperimen dengan sequin, bead, charms 3D. Tutorial-nya viral di TikTok Indonesia 2026. Kompleksitas tinggi = charging premium lebih mudah.</p>
+          <div class="tren-pop">
+            <span class="pop-label">Popularitas</span>
+            <div class="pop-bar"><div class="pop-fill" style="width:75%"></div></div>
+            <span class="pop-val">75%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tren-card">
+        <div class="tren-header" style="background: linear-gradient(135deg, #f8e8ff, #ecd0ff);">
+          <div class="tren-icon">🏛️</div>
+          <div>
+            <div class="tren-name">Motif Lokal (Batik, Kultural)</div>
+            <div class="tren-origin">📍 Sozo Clinic 2025 — diferensiasi lokal</div>
+          </div>
+        </div>
+        <div class="tren-body">
+          <p class="tren-desc">Motif batik Parang, Mega Mendung, Kawung diadaptasi modern ke nail art. Palet warna dari alam Indonesia: hijau sawah, biru laut, jingga sunset. Diferensiasi kuat dari kompetitor, cocok untuk wisatawan &amp; pengantin adat.</p>
+          <div class="tren-pop">
+            <span class="pop-label">Popularitas</span>
+            <div class="pop-bar"><div class="pop-fill" style="width:65%"></div></div>
+            <span class="pop-val">65%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: HARGA -->
+  <section id="harga">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <div class="section-title">
+        Benchmark Harga Pasar Indonesia
+        <small>Sumber: Kompas Lifestyle, Traveloka BSD, Lemon8, Tokopedia</small>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Layanan / Produk</th>
+            <th>Range Harga</th>
+            <th>Keterangan</th>
+            <th>Sumber</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Gel manicure basic</strong></td>
+            <td class="price-range">Rp 80.000 – 130.000</td>
+            <td>Per 10 jari, warna polos atau simple design</td>
+            <td>Kompas, Lemon8</td>
+          </tr>
+          <tr>
+            <td><strong>Nail art cat eye</strong></td>
+            <td class="price-range">Rp 80.000 – 150.000</td>
+            <td>Per 10 jari, termasuk teknik magnet</td>
+            <td>Alash Studio via Kompas</td>
+          </tr>
+          <tr>
+            <td><strong>Nail art per jari</strong></td>
+            <td class="price-range">Rp 5.000 – 40.000</td>
+            <td>Tambahan per kuku di atas harga dasar gel</td>
+            <td>The Origin BSD via Traveloka</td>
+          </tr>
+          <tr>
+            <td><strong>Gel manicure premium + design</strong></td>
+            <td class="price-range">Rp 140.000 – 350.000</td>
+            <td>Salon premium Jakarta/BSD/Bali, termasuk manicure</td>
+            <td>Traveloka BSD</td>
+          </tr>
+          <tr>
+            <td><strong>Russian manicure</strong></td>
+            <td class="price-range">Rp 85.000 – 150.000</td>
+            <td>Teknik khusus bersihkan kutikula</td>
+            <td>Lemon8 review</td>
+          </tr>
+          <tr>
+            <td><strong>Express manicure</strong></td>
+            <td class="price-range">Rp 50.000 – 99.000</td>
+            <td>Tanpa atau minimal design</td>
+            <td>Lunula Studio, Studio Middlemist</td>
+          </tr>
+          <tr>
+            <td><strong>Press on nails custom</strong></td>
+            <td class="price-range">Rp 20.000 – 99.000</td>
+            <td>10 pcs, custom size & design, lem stiker included</td>
+            <td>Shopee (geminail.s, nisrina_nails)</td>
+          </tr>
+          <tr>
+            <td><strong>Nail extension (builder gel)</strong></td>
+            <td class="price-range">Rp 99.000 – 236.000</td>
+            <td>Full set 10 jari dengan gel builder/akrilik</td>
+            <td>Tokopedia, Irwan Team via Traveloka</td>
+          </tr>
+          <tr>
+            <td><strong>Nail sticker custom 17 Agustus</strong></td>
+            <td class="price-range">Rp 10.000 – 30.000</td>
+            <td>Per sheet, potensi dijual ke nail artist lain (B2B)</td>
+            <td>Estimasi pasar Shopee</td>
+          </tr>
+          <tr>
+            <td><strong>Jelly Glaze / Chrome Premium</strong></td>
+            <td class="price-range">+20–25% dari harga standar</td>
+            <td>Teknik layering kompleks, justifikasi premium pricing</td>
+            <td>Reforma.eu Apr 2026</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION 5: MARKET DATA -->
+  <section id="market">
+    <div class="section-header reveal">
+      <span class="section-num">05</span>
+      <div class="section-title">
+        Data Pasar & Ekosistem
+        <small>Sumber: Statista, Kompasiana, Kemenperin, jurnal akademik UNNES, Bisnis.com</small>
+      </div>
+    </div>
+
+    <div class="market-grid reveal">
+      <div class="market-card">
+        <span class="market-card-num">Rp 4,79T</span>
+        <div class="market-card-label">Proyeksi total pasar nail art Indonesia 2025</div>
+        <span class="market-card-source">Kompasiana Jul 2025</span>
+      </div>
+      <div class="market-card">
+        <span class="market-card-num">4–9%</span>
+        <div class="market-card-label">Pertumbuhan tahunan pasar nail art Indonesia</div>
+        <span class="market-card-source">Kompasiana Jul 2025</span>
+      </div>
+      <div class="market-card">
+        <span class="market-card-num">US$280M</span>
+        <div class="market-card-label">Proyeksi pasar nail cosmetics Indonesia 2025</div>
+        <span class="market-card-source">Statista via JSER 2025</span>
+      </div>
+      <div class="market-card">
+        <span class="market-card-num">30,9%</span>
+        <div class="market-card-label">Pertumbuhan online produk nail cosmetics — tertinggi di kategori dekoratif</div>
+        <span class="market-card-source">Kompasiana Jul 2025</span>
+      </div>
+    </div>
+
+    <div class="trend-grid reveal">
+      <div class="trend-card">
+        <div class="trend-card-title">Distribusi Bisnis Nail Art Indonesia</div>
+        <div class="trend-card-sub">Berdasarkan pulau (Kompasiana Jul 2025)</div>
+        <div class="bar-list">
+          <div class="bar-item">
+            <span class="bar-label">Jawa</span>
+            <div class="bar-track"><div class="bar-fill" style="width:70%;background:var(--rose)"></div></div>
+            <span class="bar-pct">2.592</span>
+          </div>
+          <div class="bar-item">
+            <span class="bar-label">Sumatera</span>
+            <div class="bar-track"><div class="bar-fill" style="width:21%;background:var(--gold)"></div></div>
+            <span class="bar-pct">758</span>
+          </div>
+          <div class="bar-item">
+            <span class="bar-label">Sulawesi</span>
+            <div class="bar-track"><div class="bar-fill" style="width:8%;background:var(--sage)"></div></div>
+            <span class="bar-pct">~290</span>
+          </div>
+          <div class="bar-item">
+            <span class="bar-label">Bali</span>
+            <div class="bar-track"><div class="bar-fill" style="width:6%;background:var(--sage)"></div></div>
+            <span class="bar-pct">~220</span>
+          </div>
+          <div class="bar-item">
+            <span class="bar-label">Kalimantan</span>
+            <div class="bar-track"><div class="bar-fill" style="width:4%;background:#ccc)"></div></div>
+            <span class="bar-pct">~145</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trend-card">
+        <div class="trend-card-title">Google Trends: Chrome Nails Indonesia</div>
+        <div class="trend-card-sub">Search interest 2025–2026 (Accio.com via Google Trends)</div>
+        <div class="bar-list">
+          <div class="bar-item">
+            <span class="bar-label">Jan 2026 (PEAK)</span>
+            <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--rose)"></div></div>
+            <span class="bar-pct">100</span>
+          </div>
+          <div class="bar-item">
+            <span class="bar-label">Des 2024</span>
+            <div class="bar-track"><div class="bar-fill" style="width:81%;background:var(--gold)"></div></div>
+            <span class="bar-pct">81</span>
+          </div>
+          <div class="bar-item">
+            <span class="bar-label">Des 2025</span>
+            <div class="bar-track"><div class="bar-fill" style="width:78%;background:var(--gold)"></div></div>
+            <span class="bar-pct">78</span>
+          </div>
+          <div class="bar-item">
+            <span class="bar-label">Ags 2025</span>
+            <div class="bar-track"><div class="bar-fill" style="width:65%;background:var(--sage)"></div></div>
+            <span class="bar-pct">65</span>
+          </div>
+          <div class="bar-item">
+            <span class="bar-label">Okt–Nov 2025 (DIP)</span>
+            <div class="bar-track"><div class="bar-fill" style="width:56%;background:#ccc"></div></div>
+            <span class="bar-pct">56</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: STRATEGI -->
+  <section id="strategi">
+    <div class="section-header reveal">
+      <span class="section-num">06</span>
+      <div class="section-title">
+        Rekomendasi Strategi Bisnis
+        <small>Berdasarkan gap analisis pasar aktual</small>
+      </div>
+    </div>
+
+    <div class="strat-grid reveal">
+      <div class="strat-card">
+        <div class="strat-num">01</div>
+        <div class="strat-title">Press-On Ramadan — Blue Ocean Market</div>
+        <div class="strat-body">
+          Muslimah yang mau kuku cantik tapi bisa dilepas saat shalat adalah segmen yang belum tergarap penuh. Temuan dari Lemon8 menunjukkan antusiasme besar untuk press-on nail "wudhu-friendly".<br><br>
+          <ul>
+            <li>Produksi &amp; stok press-on blank H-60 sebelum Ramadan</li>
+            <li>Buat paket "Lebaran Set 10 jari" siap kirim</li>
+            <li>Konten TikTok/Instagram: tutorial lepas pasang saat shalat</li>
+            <li>Kolaborasi dengan seller hijab/gamis sebagai bundle</li>
+          </ul>
+        </div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-num">02</div>
+        <div class="strat-title">Seasonal Nail Sticker B2B</div>
+        <div class="strat-body">
+          Produksi nail sticker tematik (17 Agustus, Imlek, Natal) dan jual ke nail artist lain di Shopee/Tokopedia. Ini adalah <em>produk B2B</em> dengan margin tinggi karena nail artist butuh sticker tapi jarang mau produksi sendiri.<br><br>
+          <ul>
+            <li>Desain seasonal 3–4 sheet per tema</li>
+            <li>Jual per pack (5–10 sheet) dengan harga grosir</li>
+            <li>Target: nail artist home service di luar Jawa (Sumatera, Sulawesi) yang stoknya terbatas</li>
+            <li>Upload listing H-45 sebelum momen</li>
+          </ul>
+        </div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-num">03</div>
+        <div class="strat-title">Master Chrome &amp; Jelly Glaze</div>
+        <div class="strat-body">
+          Chrome nails = tren paling konsisten (Google Trends 56–100 sepanjang tahun). Jelly Glaze = tren viral 2026 yang justify premium pricing +20–25%. Kedua teknik ini harus jadi layanan unggulan.<br><br>
+          <ul>
+            <li>Invest di chrome powder qualitas: unicorn, aurora, iridescent</li>
+            <li>Belajar teknik jelly glaze layering (dari Reforma.eu)</li>
+            <li>Foto konten dengan <em>macro lens + moving light</em> agar kilau terlihat</li>
+            <li>Pricing: Jelly Glaze = +25% dari gel standar</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stok bulanan guide -->
+    <div class="reveal" style="margin-top:32px; background:white; border-radius:16px; padding:32px; box-shadow:0 2px 16px rgba(0,0,0,0.06);">
+      <div style="font-family:'Playfair Display',serif; font-size:20px; margin-bottom:16px;">Panduan Stok Bahan Baku — Kapan Beli &amp; Berapa Banyak</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div>
+          <div class="detail-subtitle" style="margin-bottom:8px;">H-30 sebelum peak, stok 2× normal:</div>
+          <div class="tag-list">
+            <span class="tag tag-material">Press-on nail blank (Ramadan/Lebaran)</span>
+            <span class="tag tag-material">Chrome powder gold &amp; silver (Desember)</span>
+            <span class="tag tag-material">Cat gel merah &amp; emas (Imlek)</span>
+            <span class="tag tag-material">Glitter chunky (NYE)</span>
+          </div>
+        </div>
+        <div>
+          <div class="detail-subtitle" style="margin-bottom:8px;">Stok universal yang wajib always on:</div>
+          <div class="tag-list">
+            <span class="tag tag-material">Gel nude &amp; earth tone (demand sepanjang tahun)</span>
+            <span class="tag tag-material">Top coat glossy &amp; matte</span>
+            <span class="tag tag-material">Rhinestone flat-back berbagai ukuran</span>
+            <span class="tag tag-material">Nail foil transfer</span>
+            <span class="tag tag-material">Nail sticker floral &amp; geometric</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /container -->
+
+<div class="footer">
+  <div class="container">
+    <strong>Nail Art Indonesia Market Intelligence 2026</strong><br>
+    Data dikompilasi dari sumber publik yang terverifikasi: Kompasiana (Jul 2025), Detik Wolipop (Feb 2026), Sozo Clinic, Ameline Beauty (Mar 2026), Fimela (Jan 2026), Reforma.eu (Apr 2026), Accio.com / Google Trends, Traveloka BSD, Kompas Lifestyle, Lemon8 Indonesia, UKM Indonesia, jurnal akademik BBHE Vol.14 No.2 (2025) &amp; JSER Vol.7 Issue 1 (2025), Kemenperin, Statista via berbagai laporan resmi.<br><br>
+    Analisis ini bersifat indikatif berbasis data publik. Kondisi pasar aktual dapat bervariasi per wilayah dan waktu.
+  </div>
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
